@@ -1,28 +1,26 @@
 {-# LANGUAGE OverloadedStrings #-}
+module Render(render) where
 
+import Style hiding (fill,stroke,strokeWidth)
 
-module Render where
-import Ansi as A
-import Shapes hiding (circle,fill)
-import Text.Blaze (toMarkup)
+import Shapes hiding (circle)
 import Text.Blaze.Svg
+import Text.Blaze.Svg11 
+import Text.Blaze.Svg11.Attributes
 
-import Text.Blaze.Svg11 hiding (title,toSvg)
-import Text.Blaze.Svg11.Attributes hiding (title)
+render :: Drawing -> Svg
+render [x] = renderHeader $ renderDrawing x
+render (x:xs) = render [x] >> render xs
 
-import Data.Map as Map hiding ((!))
-import Data.Maybe
+renderHeader :: Svg -> Svg
+renderHeader = docTypeSvg ! version "1.1" ! viewbox "-25 -25 100 100" 
 
-defaultMap :: Map String String
-defaultMap = Map.fromList [("shape","circle"),("fill","white"),("stroke","black"),("strokeWidth","2"),("cy","50"),("cx","50"),("r","400"),("width","500"),("heigth","100")]
+renderDrawing :: (Transform,Shape,StyleTrans) -> Svg
+renderDrawing (trans,shape,sTrans) = renderShape shape ! strokeWidth (getWidth style) ! stroke (getStroke style) ! fill (getFill style)
+  where style = setStyle sTrans defaultStyle
 
-initSvg :: Drawing -> Svg
-initSvg d = mkSvg d defaultMap
+renderShape :: Shape -> Svg
+renderShape Circle = circle ! r "30" ! cx "10" ! cy "10" 
+renderShape Square = rect ! width "20" ! height "20"
+renderShape Empty = rect
 
-mkSvg :: Drawing -> Map String String -> Svg
-mkSvg [(trans,s)] svgMap = svg ! width (get "width") ! height (get "heigth") $
-          circle ! cx (get "cx") ! cy (get "cy") ! r (get "r") ! stroke (get "stroke") ! strokeWidth (get "strokeWidth") ! fill (get "fill")
-          where get s = extractVal s $ transformSvg trans svgMap
-
-extractVal :: String -> Map String String -> AttributeValue
-extractVal s m = stringValue $ fromJust $ Map.lookup s m

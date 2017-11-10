@@ -4,21 +4,12 @@ module Server where
 
 import Web.Scotty
 import Prelude hiding (head)
-import qualified Text.Blaze.Html5 as H
-import qualified Text.Blaze.Html5.Attributes 
-import qualified Text.Blaze.Html.Renderer.Pretty as P
+import Text.Blaze.Svg.Renderer.Utf8 (renderSvg)
 
-import Data.Text.Lazy
+r drawing = do
+  setHeader "Content-Type" "image/svg+xml"
+  setHeader "Vary" "Accept-Encoding"
+  raw $ renderSvg drawing
 
-import Render
+serve = scotty 3000 . get "/" . r 
 
-
-serve s = scotty 3000 $ get "/" $ html $ pack $ P.renderHtml $ render s
-
-
---renderImage :: html
-render s = H.docTypeHtml $ do
-  H.head $ H.title "Works"
-  H.body $ do
-    H.h1 "Gorge shape"
-    s

@@ -1,12 +1,12 @@
 module Main where
 
-import Shapes
 import Render 
-import Ansi
 import Server
+import Shapes
+import Style
+import Colour
 
---exampleDrawing =  [ (scale (point 0.5 0.25) <+> translate (point 1.2 0.4), circle) ]
-exampleDrawing =  [ (scale (vector 10 3), circle) ]
+exampleDrawing =  [ (identity , circle, fill red <%> stroke blue <%> strokeWidth 5) ]
 
-main = serve $ initSvg exampleDrawing
+main = serve $ render exampleDrawing
  
