@@ -6,7 +6,7 @@ import Shapes
 import Style
 import Colour
 
-exampleDrawing =  [ (identity , circle, fill red <%> stroke blue <%> strokeWidth 5) ]
+exampleDrawing =  [ (scale 10 10 <+> rotate 90, circle, fill red <%> strokeWidth 0.5) ]
 
 main = serve $ render exampleDrawing
  

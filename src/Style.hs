@@ -1,7 +1,7 @@
 module Style where
 
 import Text.Blaze.Svg11
-import Text.Blaze.Svg11.Attributes
+import Text.Blaze.Svg11.Attributes 
 
 import Colour
 
