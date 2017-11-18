@@ -19,7 +19,7 @@ strokeWidth = Width
 t1 <%> t2 = Glue t1 t2
 
 defaultStyle :: Style
-defaultStyle = Style white black 2
+defaultStyle = Style white black 0.1 
 
 setStyle :: StyleTrans -> Style -> Style
 setStyle (Fill c)     (Style _ s w) = Style c s w 
