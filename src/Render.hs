@@ -28,10 +28,6 @@ renderShape Circle = circle ! r "1"
 renderShape Square = rect ! width "1" ! height "1"
 renderShape Empty  = rect
 
-insertTransform :: [Attribute] -> Svg
-insertTransform [x] = x
-insertTransform (x:xs) = x ! insertTransform xs
-
-renderTransform :: Transform -> Svg
-renderTransform trans = head $ map SA.transform (Shapes.transform trans)
+renderTransform :: Transform -> Attribute
+renderTransform trans = SA.transform $ mconcat $ Shapes.transform trans
 

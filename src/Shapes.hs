@@ -35,7 +35,7 @@ transform :: Transform -> [AttributeValue]
 transform (Translate x y) = [S.translate x y]
 transform (Scale x y)     = [S.scale x y]
 transform (Rotate a)      = [S.rotate a]
-transform (Compose t0 t1) = concat ((Shapes.transform t1) : (Shapes.transform t0) : [])
+transform (Compose t0 t1) = (Shapes.transform t1) ++ (Shapes.transform t0)
 -- Drawing
 type Drawing = [(Transform,Shape,StyleTrans)]
 
