@@ -8,11 +8,12 @@ import Text.Blaze.Svg11 hiding (scale)
 import Text.Blaze.Svg11.Attributes as SA 
 
 render :: Drawing -> Svg
-render [x] = renderHeader $ renderDrawing x
-render (x:xs) = render [x] >> render xs
+render x = docTypeSvg ! version "1.1" ! viewbox "-25 -25 100 100" $ render' x
 
-renderHeader :: Svg -> Svg
-renderHeader = docTypeSvg ! version "1.1" ! viewbox "-25 -25 100 100" 
+render' :: Drawing -> Svg
+render' [x] = renderDrawing x
+render' (x:xs) = render' [x] >> render' xs
+
 
 renderDrawing :: (Transform,Shape,StyleTrans) -> Svg
 renderDrawing (trans,shape,sTrans) = renderShape shape ! 
