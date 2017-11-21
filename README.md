@@ -4,7 +4,7 @@ A DSL for various shapes and transformations which displays the images through s
 ## The DSL
 Drawings consist of transformations, a shape and and some style transforms. Lists of shapes are rendered using scotty.
 ```
-(Transforms,Shape,StyleTrans)
+[(Transforms,Shape,StyleTrans)]
 ```
 Below details how to use the DSL to generate your own Svg's, through both the web service and source code.
 
