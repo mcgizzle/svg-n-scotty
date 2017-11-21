@@ -13,18 +13,13 @@ The DSL permits the generation of squares and circles (rectangles can be created
 
 ### Style
 The style of the drawing can be modified by adding style transformations which include:
-```
-Code              | Web Service
-```
-``` 
-fill red          | Fill Red
-```
-``` 
-stroke blue       | Stroke Blue
-```
-``` 
-strokeWidth 2.0   | Width 2.0
-```
+
+| __Code__          | __Web Service__ |
+|---|---|
+| `fill red`        | `Translate 5 10`|
+| `stroke blue`     | `Stroke Blue`   |
+| `strokeWidth 2.0` | `Width 2.0`     |
+
 Multiple styles can __glued__ together into a single style
 ```
 fill red <%> stroke blue <%> strokeWidth 0.05
@@ -36,9 +31,9 @@ The Svg can be transformed in various ways:
 
 | __Code__          | __Web Service__ |
 |---|---|
-| `translate 5 10`  | `Translate 5 10` |
-| `scale 3 4`       | `Scale 3 4`      |
-| `rotate 120`      | `Rotate 120`     |
+| `translate 5 10`  | `Translate 5 10`|
+| `scale 3 4`       | `Scale 3 4`     |
+| `rotate 120`      | `Rotate 120`    |
 
 Multiple transforms can be __composed__ together
 ```
