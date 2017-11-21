@@ -20,7 +20,8 @@ renderDrawing (trans,shape,sTrans) = renderShape shape !
                                     renderTransform trans ! 
                                     SA.fill (getFill style) !
                                     SA.strokeWidth (getWidth style) ! 
-                                    SA.stroke (getStroke style) 
+                                    SA.stroke (getStroke style) !
+                                    customAttribute "vector-effect" "non-scaling-stroke"
                                       
   where style = setStyle sTrans defaultStyle
 

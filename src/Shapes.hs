@@ -11,7 +11,7 @@ import Style
 data Shape = Circle 
            | Square
            | Empty
-             deriving Show
+          deriving (Show,Read)
 
 circle, square, empty :: Shape
 empty = Shapes.Empty
@@ -20,10 +20,11 @@ circle = Circle
 
 -- Transformations
 data Transform = Identity
-           | Translate Double Double
-           | Scale Double Double
-           | Rotate Double
-           | Compose Transform Transform
+               | Translate Double Double
+               | Scale Double Double
+               | Rotate Double
+               | Compose Transform Transform
+              deriving (Show,Read)
 
 identity = Identity
 translate = Translate
@@ -36,6 +37,7 @@ transform (Translate x y) = [S.translate x y]
 transform (Scale x y)     = [S.scale x y]
 transform (Rotate a)      = [S.rotate a]
 transform (Compose t0 t1) = (Shapes.transform t1) ++ (Shapes.transform t0)
+
 -- Drawing
 type Drawing = [(Transform,Shape,StyleTrans)]
 

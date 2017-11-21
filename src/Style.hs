@@ -13,13 +13,14 @@ data StyleTrans = Fill Colour
                 | Stroke Colour 
                 | Width  Size
                 | Glue StyleTrans StyleTrans
+                deriving (Show,Read)
 fill = Fill
 stroke = Stroke
 strokeWidth = Width
 t1 <%> t2 = Glue t1 t2
 
 defaultStyle :: Style
-defaultStyle = Style white black 0.1 
+defaultStyle = Style white black 2.0 
 
 setStyle :: StyleTrans -> Style -> Style
 setStyle (Fill c)     (Style _ s w) = Style c s w 

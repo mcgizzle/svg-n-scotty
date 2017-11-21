@@ -5,13 +5,7 @@ data Colour = Black
             | Blue
             | Green
             | Red
-
-instance Show Colour where
-  show White = "white"
-  show Black = "black"
-  show Blue = "blue"
-  show Green = "green"
-  show Red = "red"
+            deriving (Read,Show)
 
 black = Black
 white = White
