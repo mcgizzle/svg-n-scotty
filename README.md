@@ -2,7 +2,7 @@
 A DSL for various shapes and transformations which displays the images through scotty.
 
 ## The DSL
-Drawings consist of transformations, a shape and and some style transforms. Lists of shapes are rendered using scotty.
+Shapes consist of transformations, a shape and and some style transforms. Lists of shapes are rendered using scotty.
 ```
 [(Transforms,Shape,StyleTrans)]
 ```
