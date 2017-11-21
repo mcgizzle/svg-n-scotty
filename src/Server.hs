@@ -5,13 +5,15 @@ module Server where
 import Web.Scotty
 import Prelude hiding (head)
 import Text.Blaze.Svg.Renderer.Utf8 (renderSvg)
+import Text.Blaze.Renderer.Text
 import Shapes (Drawing)
 import Render (render)
 import Data.Either
 import Data.Text.Lazy
+import Text.Read (readMaybe)
 
-toShape :: Text -> Drawing
-toShape s = read (unpack s) :: Drawing
+toShape :: Text -> Maybe Drawing
+toShape s = readMaybe (unpack s) 
 
 showSvg drawing = do
   setHeader "Content-Type" "image/svg+xml"
@@ -24,4 +26,6 @@ serve = scotty 3000 $ do
  
   post "/display" $ do
     shapes <- (param "shape1") `rescue` return
-    raw $ renderSvg $ render $ toShape shapes 
+    case toShape shapes of
+      Just shapes' -> raw $ renderSvg $ render shapes'
+      Nothing      -> html "<h1> You have submitted an incorrect shape, please check your shapes and try again <br>ps it's probably a parenthesis issue</h1>"
