@@ -16,7 +16,7 @@ The style of the drawing can be modified by adding style transformations which i
 
 | __Code__          | __Web Service__ |
 |---|---|
-| `fill red`        | `Translate 5 10`|
+| `fill red`        | `Fill 5 10`     |
 | `stroke blue`     | `Stroke Blue`   |
 | `strokeWidth 2.0` | `Width 2.0`     |
 
