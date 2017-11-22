@@ -13,7 +13,7 @@ import Data.Text.Lazy
 import Text.Read (readMaybe)
 
 toShape :: Text -> Maybe Drawing
-toShape s = readMaybe (unpack s) 
+toShape = readMaybe . unpack 
 
 showSvg drawing = do
   setHeader "Content-Type" "image/svg+xml"
