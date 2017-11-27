@@ -41,7 +41,7 @@ translate 5 10 <+> scale 3 4 <+> rotate 120
 ```
 __Note__ ```Compose (Transform) (Transform)``` must be used on the web service instead of the infix ```<+>```.
 
-## Building & Running
+## Building & Running with [stack](https://docs.haskellstack.org/en/stable/README/)
 ```
 stack build
 ```
