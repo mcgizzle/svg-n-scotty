@@ -32,6 +32,7 @@ scale = Scale
 rotate = Rotate
 t0 <+> t1 = Compose t0 t1
 
+-- Pattern macthes out the DSL, converting the info the relevant AttributeValue
 transform :: Transform -> [AttributeValue]
 transform (Translate x y) = [S.translate x y]
 transform (Scale x y)     = [S.scale x y]

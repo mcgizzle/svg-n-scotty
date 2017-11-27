@@ -12,18 +12,23 @@ import Data.Either
 import Data.Text.Lazy
 import Text.Read (readMaybe)
 
+-- Takes in the Text gathered from the POST request and uses Haskells derived read to convert it to the matching drawing
 toShape :: Text -> Maybe Drawing
 toShape = readMaybe . unpack 
 
+-- Setup required for an Svg
 showSvg drawing = do
   setHeader "Content-Type" "image/svg+xml"
   setHeader "Vary" "Accept-Encoding"
   raw $ renderSvg drawing
 
 serve = scotty 3000 $ do
-
+  
+  -- Displays the form to submit shapes
   get "/" $ file "static/index.html"
  
+ -- Gathers the POST parameters and checks if they can be read in
+ -- If yes, it then passes them to the render function
   post "/display" $ do
     shapes <- (param "shape1") `rescue` return
     case toShape shapes of
